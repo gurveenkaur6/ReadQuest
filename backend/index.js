@@ -1,5 +1,6 @@
 import express from "express";
-import {PORT} from "./config.js";
+import {PORT, mongoDBURL} from "./config.js";
+import mongoose from "mongoose";
 
 //  an instance of the Express application
 const app = express();
@@ -10,7 +11,16 @@ app.get('/',(request, response)=>{
     return response.status(664).send("ReadQuest is Work in Progress. Stay Tuned :)"); // the outging response sent to the client 
 });
 
-// function to listens to the port for incoming requests
-app.listen(PORT, () => {
-    console.log(`App is listening to PORT: ${PORT}`);
-});
+
+mongoose
+    .connect(mongoDBURL)
+    .then(()=>{
+        console.log("App connected to the database");
+        // function to listens to the port for incoming requests
+        app.listen(PORT, () => {
+            console.log(`App is listening to PORT: ${PORT}`);
+        });
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
