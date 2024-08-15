@@ -97,6 +97,22 @@ app.put('/books/:id', async (request, response) => {
     }
 });
 
+// route to delete a book by id
+app.delete('/books/:id', async (request, response) => {
+    try {
+        const {id} = request.params;
+        const result = Book.findByIdAndDelete(id);
+        if(!result) {
+            return response.status(400).send({message: "Book not found"});
+        }
+        return response.status(200).send({message: "Book Deleted Successfully !"});
+        
+    } catch (error) {
+        console.log(error);
+        response.status(500).send({message: error.message});
+    }
+})
+
 // mongoose is a library that allows us to interact with mongodb database using javascript 
 mongoose
     .connect(mongoDBURL)
