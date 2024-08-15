@@ -77,7 +77,7 @@ router.put("/:id", async (request, response) => {
     }
 
     const { id } = request.params;
-    const result = Book.findByIdAndUpdate(id, request.body);
+    const result = await Book.findByIdAndUpdate(id, request.body);
     if (!result) {
       return response.status(400).send({ message: "Book not found" });
     }
@@ -94,7 +94,8 @@ router.put("/:id", async (request, response) => {
 router.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
-    const result = Book.findByIdAndDelete(id);
+    // By adding await, you're waiting for findByIdAndDelete to finish executing before moving on. 
+    const result = await Book.findByIdAndDelete(id);
     if (!result) {
       return response.status(400).send({ message: "Book not found" });
     }
