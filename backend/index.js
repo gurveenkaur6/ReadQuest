@@ -19,11 +19,12 @@ app.use(cors({
 }))
 
 // a global middleware to parse the request body- middleware function in express framework sits between client request and server response
-app.use(express.json());
+app.use(express.json()); // converts JSON data in the request body to a javascript object 
 
+// any requests that start with '/books' will be delegated to booksRoute router. This makes code modular.
 app.use('/books', booksRoute);
 
-// mongoose is a library that allows us to interact with mongodb database using javascript 
+// mongoose is a library that allows us to interact with mongodb database using javascript that you can access through request.body
 mongoose
     .connect(mongoDBURL)
     .then(()=>{
