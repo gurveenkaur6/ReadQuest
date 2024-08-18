@@ -6,10 +6,10 @@ import EditBook from './pages/EditBook';
 import DeleteBook from './pages/DeleteBook';
 import CreateBooks from './pages/CreateBooks';
 
-
+// adding routes
 const App = () => {
   return (
-    <Routes>
+    <Routes> 
       <Route path= '/' element={<Home />} />
       <Route path= '/books/create' element={<CreateBooks />} />
       <Route path= '/books/details/:id' element={<ShowBook/>} />
