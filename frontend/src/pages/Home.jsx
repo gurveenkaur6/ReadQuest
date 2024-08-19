@@ -7,6 +7,7 @@ import {AiOutlineEDit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
 import {MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 
+// home page
 const Home = () => {
     const [books, setBooks] = useState([]); // holds a list of books fetched from the API
     const [loading, setLoading] = useState(false); // indicates whether the data is currently being loaded from the API
