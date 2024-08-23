@@ -19,6 +19,7 @@ const Home = () => {
         .get('http://localhost:5555/books') 
         // handle the response
         .then((response) => { // if request is successful, response.data.data that contains the 'count' and 'books' is assigned to books state using setBooks
+            console.log(response.data.data);
             setBooks(response.data.data);
             setLoading(false)
         })
