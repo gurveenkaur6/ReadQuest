@@ -7,9 +7,9 @@ import Spinner from "../components/Spinner";
 
 const CreateBooks = () => {
   // define state variabes - they hold book's title, author, publishYear and loading status
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [pubishYear, setPublishYear] = useState("");
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [publishYear, setPublishYear] = useState('');
   const [loading, setLoading] = useState(false);
 
   // sets up navigation to allow component CreateBooks to change pages
@@ -26,7 +26,7 @@ const CreateBooks = () => {
     setLoading(true);
     // using axios to send the book data to the server at port 5555/books
     axios
-      .post("http://localhost:5555/books")
+      .post("http://localhost:5555/books", data)
       // if successfully sent, navigate back to home page
       .then(() => {
         setLoading(false);
@@ -73,7 +73,7 @@ const CreateBooks = () => {
           <label className="text-xl mr-4 text-gray-500">Publish Year</label>
           <input 
             type = "text" 
-            value = {pubishYear} 
+            value = {publishYear} 
             // OnChange is triggered whenever the input changes
             onChange={(e)=> setPublishYear(e.target.value)} // e.target.value is accessing the current value of the input field
             className="border-2 border-gray-500 px-4 py-2 w-full" 
