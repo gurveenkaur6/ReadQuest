@@ -13,7 +13,7 @@ const EditBook = () => {
   const [publishYear, setPublishYear] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { id } = useParams();
+  const { id } = useParams(); // to access the id parameter from the current url
 
   // set up navigation
   const navigate = useNavigate();
@@ -23,17 +23,16 @@ const EditBook = () => {
     axios
       .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
-        setTitle(response.data.title);
         setAuthor(response.data.author);
-        setPublishYear(response.data.publishYear);
+        setPublishYear(response.data.publishYear)
+        setTitle(response.data.title)
         setLoading(false);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         setLoading(false);
-        alert("An error hhappened ! Please check console");
+        alert('An error happened. Please Chack console');
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   // function to save the newly created book
   const handleEditBook = () => {
