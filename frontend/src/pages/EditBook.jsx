@@ -36,7 +36,7 @@ const EditBook = () => {
   }, []);
 
   // function to save the newly created book
-  const handleSaveBook = () => {
+  const handleEditBook = () => {
     // create an object with the book's information
     const data = {
       title,
@@ -46,7 +46,7 @@ const EditBook = () => {
     setLoading(true);
     // using axios to send the book data to the server at port 5555/books
     axios
-      .post("http://localhost:5555/books", data)
+      .put(`http://localhost:5555/books/${id}`, data)
       // if successfully sent, navigate back to home page
       .then(() => {
         setLoading(false);
@@ -99,7 +99,7 @@ const EditBook = () => {
             className="border-2 border-gray-500 px-4 py-2 w-full"
           />
         </div>
-        <button className="p-2 bg-sky-500 m-8" onClick={handleSaveBook}>
+        <button className="p-2 bg-sky-500 m-8" onClick={handleEditBook}>
           Save
         </button>
       </div>
