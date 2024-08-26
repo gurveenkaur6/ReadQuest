@@ -8,7 +8,7 @@ const DeleteBook = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams(); // to access the id parameter from the current url
 
-  // set up navigation
+  // set up navigation to go back to home page after deleting the book
   const navigate = useNavigate();
 
   const handleDeleteBook = () => {
