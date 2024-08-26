@@ -4,7 +4,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 
-// eslint-disable-next-line react/prop-types
+ 
 const BooksTable = ({ books }) => {
   return (
     <table className='w-full border-separate border-spacing-2'>
