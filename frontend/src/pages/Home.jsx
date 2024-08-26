@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 // import { AiOutlineEdit } from "react-icons/ai";
 // import { BsInfoCircle } from "react-icons/bs";
-// import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
+import { MdOutlineAddBox } from "react-icons/md";
 import BooksCard from "../components/home/BooksCard";
 import BooksTable from "../components/home/BooksTable";
 
@@ -13,6 +13,7 @@ import BooksTable from "../components/home/BooksTable";
 const Home = () => {
   const [books, setBooks] = useState([]); // holds a list of books fetched from the API
   const [loading, setLoading] = useState(false); // indicates whether the data is currently being loaded from the API
+  const [showType, setShowType] = useState("table");
 
   // useEffect hook is used to perform the sideEffect of fetching the data from an API
   useEffect(() => {
@@ -33,6 +34,21 @@ const Home = () => {
   }, []); // [] is an empty dependency array for the useEffect hook, means this effect will run only once, right after the initial render
   return (
     <div className="p-4">
+      <div className="flex justify-center items-center gap-x-4">
+        <button
+          className="bg-sky-500 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          onClick={() => setShowType("table")}
+        >
+          Table
+        </button>
+
+        <button
+          className="bg-sky-500 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          onClick={() => setShowType("card")}
+        >
+          Card
+        </button>
+      </div>
       <div className="flex justify-between items-center">
         <h1 className="text-3xl my-8">Books List</h1>
         <Link to="/books/create">
@@ -41,8 +57,10 @@ const Home = () => {
       </div>
       {loading ? (
         <Spinner></Spinner>
+      ) : showType === "table" ? (
+        <BooksTable books={books} />
       ) : (
-        <BooksTable books = {books}/>
+        <BooksCard books={books} />
       )}
     </div>
   );
