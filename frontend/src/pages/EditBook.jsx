@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
+import { useSnackbar } from "notistack";
 
 // Similar to create book but we fetch the book to be modified using its id from the backend
 const EditBook = () => {
@@ -12,6 +13,7 @@ const EditBook = () => {
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
   const [loading, setLoading] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const { id } = useParams(); // to access the id parameter from the current url
 
@@ -49,12 +51,14 @@ const EditBook = () => {
       // if successfully sent, navigate back to home page
       .then(() => {
         setLoading(false);
+        enqueueSnackbar('Book edited successfully !', {variant: 'success'});
         navigate("/");
       })
       // else, alert the user of the error and log the error in the console
       .catch((error) => {
         setLoading(false);
-        alert("An error hhappened ! Please check console");
+        // alert("An error hhappened ! Please check console");
+        enqueueSnackbar('Error', {variant: 'error'});
         console.log(error);
       });
   };

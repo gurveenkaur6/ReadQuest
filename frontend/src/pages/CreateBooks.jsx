@@ -12,7 +12,7 @@ const CreateBooks = () => {
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
   const [loading, setLoading] = useState(false);
-  const [enqueueSnackbar] = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   // sets up navigation to allow component CreateBooks to change pages
   const navigate = useNavigate();
