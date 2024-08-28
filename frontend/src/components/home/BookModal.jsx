@@ -1,24 +1,26 @@
 /* eslint-disable react/prop-types */
 // import React from 'react'
 import { PiBookOpenTextLight } from "react-icons/pi";
-import { BiUserCircle} from "react-icons/bi";
+import { BiUserCircle } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
 const BookModal = ({ book, onClose }) => {
+  // onClose is a function that closes the modal when you click outside of it or on the close button
   return (
-    // this is the container of our book modal
+    // a container that covers the entire screen with a semi-transparent black background, clicking on the dark area will close the book modal
     <div
       className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
       onClick={onClose}
     >
-      <div
-        onClick={(event) => event.stopPropagation()} // to prevent clicks inside the modal from closing it
+      <div // actual modal box where the book info is displayed
+        onClick={(event) => event.stopPropagation()} // to prevent clicks inside this box from closing it
         className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
       >
-        <AiOutlineClose
+        <AiOutlineClose //  it calls the onClose function to close the modal when clicked
           className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
           onClick={onClose}
         />
+
         <h2 className="w-fit px-4 py-1 bg-red-300 rounded-lg">
           {book.publishYear}
         </h2>
@@ -32,6 +34,7 @@ const BookModal = ({ book, onClose }) => {
           <BiUserCircle className="text-red-300 text-2xl" />
           <h2 className="my-1">{book.author}</h2>
         </div>
+
         <p className="mt-4">Anything You want to show</p>
         <p className="my-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quia
