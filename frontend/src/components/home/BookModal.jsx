@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 // import React from 'react'
 import { PiBookOpenTextLight } from "react-icons/pi";
-import { BiUserCircle } from "react-icons/bi";
+import { BiUserCircle} from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
 const BookModal = ({ book, onClose }) => {
