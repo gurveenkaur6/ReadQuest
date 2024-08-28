@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
+import { useSnackbar } from "notistack";
 
 const CreateBooks = () => {
   // define state variabes - they hold book's title, author, publishYear and loading status
@@ -11,6 +12,7 @@ const CreateBooks = () => {
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
   const [loading, setLoading] = useState(false);
+  const [enqueueSnackbar] = useSnackbar();
 
   // sets up navigation to allow component CreateBooks to change pages
   const navigate = useNavigate();
@@ -30,12 +32,14 @@ const CreateBooks = () => {
       // if successfully sent, navigate back to home page
       .then(() => {
         setLoading(false);
+        enqueueSnackbar('Book created successfully !', {variant: 'success'});
         navigate("/");
       })
       // else, alert the user of the error and log the error in the console
       .catch((error) => {
         setLoading(false);
-        alert("An error hhappened ! Please check console");
+        // alert("An error hhappened ! Please check console");
+        enqueueSnackbar('Error', {variant: 'error'});
         console.log(error);
       });
   };
