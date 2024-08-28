@@ -12,7 +12,7 @@ const BookModal = ({ book, onClose }) => {
       onClick={onClose}
     >
       <div
-        onClick={(event) => event.stopPropagation()} // we want the modal to be closed only on 2 conditons
+        onClick={(event) => event.stopPropagation()} // to prevent clicks inside the modal from closing it
         className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
       >
         <AiOutlineClose
